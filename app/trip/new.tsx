@@ -394,7 +394,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingTop: 60,
+    paddingTop: 50, // Adjusted to match other screens
     paddingHorizontal: 16,
     paddingBottom: 16,
     borderBottomWidth: 1,
@@ -462,29 +462,27 @@ const styles = StyleSheet.create({
   formSection: {
     paddingHorizontal: 16,
     paddingBottom: 24,
-  },
-  lastSection: {
-    paddingBottom: 100,
-  },
-  inputContainer: {
-    marginBottom: 16,
+  },  lastSection: {
+    paddingBottom: 120, // Increased to standardize with other screens
+  },inputContainer: {
+    marginBottom: 20, // Increased vertical spacing between form elements
   },
   inputLabel: {
-    fontSize: 14,
+    fontSize: 15, // Slightly increased font size for better readability
     marginBottom: 8,
+    fontWeight: '500', // Added font weight for better visibility
   },
   input: {
-    height: 50,
+    height: 52, // Increased height for better touch targets
     borderRadius: 12,
     paddingHorizontal: 16,
     fontSize: 16,
-  },
-  textArea: {
-    minHeight: 100,
+  },  textArea: {
+    minHeight: 120, // Increased height for better usability
     borderRadius: 12,
     paddingHorizontal: 16,
-    paddingTop: 12,
-    paddingBottom: 12,
+    paddingTop: 14, // Increased padding
+    paddingBottom: 14, // Increased padding
     fontSize: 16,
   },
   dateContainer: {
@@ -493,9 +491,8 @@ const styles = StyleSheet.create({
   },
   dateInputContainer: {
     flex: 1,
-  },
-  dateInputWrapper: {
-    height: 50,
+  },  dateInputWrapper: {
+    height: 52, // Increased height to match other inputs
     borderRadius: 12,
     flexDirection: 'row',
     alignItems: 'center',

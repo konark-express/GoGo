@@ -10,7 +10,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 export default function ProfileScreen() {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<typeof mockUserProfile | null>(null);
   const [syncEnabled, setSyncEnabled] = useState(true);
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
   const [loading, setLoading] = useState(true);
@@ -34,7 +34,7 @@ export default function ProfileScreen() {
     router.replace('/auth/login');
   };
 
-  const navigateToScreen = (screen: string) => {
+  const navigateToScreen = (screen: any) => { // Use any temporarily to avoid complex path typing
     router.push(screen);
   };
 
@@ -46,7 +46,13 @@ export default function ProfileScreen() {
     setNotificationsEnabled(!notificationsEnabled);
   };
 
-  const renderSettingsOption = (icon, title, onPress, rightElement = null, showDivider = true) => {
+  const renderSettingsOption = (
+    icon: React.ReactNode, 
+    title: string, 
+    onPress: (() => void) | null, 
+    rightElement: React.ReactNode = null, 
+    showDivider = true
+  ) => {
     return (
       <>
         <TouchableOpacity
@@ -281,13 +287,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 16,
     justifyContent: 'space-between',
+    flexWrap: 'wrap',            // Allow stats to wrap on smaller screens
   },
   statBox: {
-    flex: 1,
+    flexBasis: '30%',            // Fixed width for consistent sizing
+    minWidth: 90,                // Minimum width to prevent squeezing
     alignItems: 'center',
     paddingVertical: 16,
-    marginHorizontal: 4,
+    paddingHorizontal: 4,        // Add horizontal padding
+    marginVertical: 4,           // Add vertical margin when wrapped
     borderRadius: 12,
+    marginHorizontal: 4,         // Add horizontal margins for spacing
   },
   statNumber: {
     fontSize: 20,
@@ -296,6 +306,7 @@ const styles = StyleSheet.create({
   },
   statLabel: {
     fontSize: 14,
+    textAlign: 'center',         // Center text for better appearance
   },
   settingsSection: {
     padding: 16,

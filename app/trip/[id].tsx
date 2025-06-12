@@ -173,7 +173,12 @@ export default function TripDetailsScreen() {
           )}
           
           {/* Trip Stats */}
-          <View style={styles.statsContainer}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={styles.statsContainer}
+            contentContainerStyle={{ paddingHorizontal: 16 }}
+          >
             <TouchableOpacity 
               style={[styles.statBox, { backgroundColor: cardBgColor }]} 
               onPress={viewParticipants}
@@ -212,7 +217,7 @@ export default function TripDetailsScreen() {
                 Activities
               </Text>
             </TouchableOpacity>
-          </View>
+          </ScrollView>
           
           {/* Expenses Section */}
           <View style={styles.sectionContainer}>
@@ -464,7 +469,7 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 16,
-    paddingBottom: 100,
+    paddingBottom: 120, // Increased to prevent FAB overlap
   },
   sectionContainer: {
     marginBottom: 24,
@@ -477,16 +482,24 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   statsContainer: {
+    // horizontal stat row
     flexDirection: 'row',
-    justifyContent: 'space-between',
     marginBottom: 24,
   },
   statBox: {
-    flex: 1,
+    width: 120,                 // fixed width for consistent visibility
     alignItems: 'center',
-    paddingVertical: 16,
+    paddingVertical: 20,        // increased padding for better spacing
+    paddingHorizontal: 8,       // add horizontal padding
     borderRadius: 12,
-    marginHorizontal: 4,
+    marginVertical: 4,           // vertical spacing when wrapped
+    marginHorizontal: 8,         // increased horizontal margins
+    // card shadow for trip overview stats
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   statIcon: {
     marginBottom: 8,
@@ -498,6 +511,7 @@ const styles = StyleSheet.create({
   },
   statLabel: {
     fontSize: 14,
+    fontWeight: '500',          // make label a bit bolder
   },
   sectionHeaderContainer: {
     flexDirection: 'row',
@@ -530,6 +544,12 @@ const styles = StyleSheet.create({
   summaryCard: {
     borderRadius: 12,
     padding: 16,
+    // subtle shadow for summary card
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 1,
   },
   summaryRow: {
     flexDirection: 'row',
@@ -604,6 +624,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 5,
-    elevation: 5,
+    elevation: 6, // Increase elevation for better visibility on Android
   },
 });

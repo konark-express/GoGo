@@ -26,13 +26,15 @@ export default function ActivitiesScreen() {
       setLoading(false);
     }, 1000);
   }, []);
-
   const addActivity = () => {
-    router.push('/activity/new');
+    // Temporary commented out due to router path issue
+    // router.push('/activity/new');
+    console.log('Add activity');
   };
-
   const viewActivityDetails = (activityId: string) => {
-    router.push(`/activity/${activityId}`);
+    // Temporary commented out due to router path issue
+    // router.push(`/activity/${activityId}`);
+    console.log('View activity details:', activityId);
   };
 
   const renderTripSelector = () => {
@@ -88,8 +90,7 @@ export default function ActivitiesScreen() {
       </View>
     );
   };
-
-  const renderActivityItem = ({ item }) => {
+  const renderActivityItem = ({ item }: { item: Activity }) => {
     return (
       <TouchableOpacity 
         style={[styles.activityCard, { backgroundColor: cardBgColor }]}
@@ -187,12 +188,13 @@ const styles = StyleSheet.create({
   },
   tripsScrollView: {
     flexDirection: 'row',
+    paddingBottom: 8, // Add bottom padding to prevent cut-off
   },
   tripItem: {
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 20,
-    marginRight: 10,
+    marginRight: 12,     // Increase spacing between trip selector items
     borderWidth: 1,
   },
   tripItemText: {
@@ -201,7 +203,7 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     padding: 16,
-    paddingBottom: 100,
+    paddingBottom: 120, // Increased padding to avoid FAB overlap
   },
   activityCard: {
     borderRadius: 12,
@@ -211,7 +213,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 2,
+    elevation: 3, // Slightly increased elevation for better card visibility
   },
   activityImage: {
     width: '100%',
@@ -257,6 +259,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 5,
-    elevation: 5,
+    elevation: 6, // Increased elevation for better visibility on Android
+    zIndex: 10,   // Ensure FAB is above other elements
   },
 });

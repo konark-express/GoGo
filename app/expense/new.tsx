@@ -617,7 +617,7 @@ const styles = StyleSheet.create({
   },
   lastSection: {
     borderBottomWidth: 0,
-    paddingBottom: 100,
+    paddingBottom: 120, // Increased to prevent FAB overlap
   },
   sectionTitle: {
     fontSize: 18,
@@ -640,20 +640,21 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   inputContainer: {
-    marginBottom: 16,
+    marginBottom: 20, // Increased for better spacing between elements
   },
   inputLabel: {
-    fontSize: 14,
+    fontSize: 15, // Slightly increased for better readability
+    fontWeight: '500', // Added font weight for better visibility
     marginBottom: 8,
   },
   input: {
-    height: 50,
+    height: 52, // Increased height for better touch targets
     borderRadius: 12,
     paddingHorizontal: 16,
     fontSize: 16,
   },
   amountInputWrapper: {
-    height: 50,
+    height: 52, // Increased height to match other inputs
     borderRadius: 12,
     flexDirection: 'row',
     alignItems: 'center',
@@ -662,11 +663,11 @@ const styles = StyleSheet.create({
   currencySymbol: {
     fontSize: 18,
     fontWeight: '600',
-    marginRight: 4,
+    marginRight: 6, // Increased spacing between currency symbol and amount
   },
   amountInput: {
     flex: 1,
-    height: 50,
+    height: 52, // Increased to match wrapper
     fontSize: 18,
     fontWeight: '600',
   },
@@ -688,19 +689,24 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
   },
+  // Participant selection styles
   paidByContainer: {
-    marginBottom: 20,
+    marginBottom: 24, // Increased spacing
   },
   paidBySelector: {
     flexDirection: 'row',
+    paddingBottom: 10, // Increased padding to prevent cut-off
+    flexWrap: 'wrap', // Allow wrapping for many participants
+    marginHorizontal: -4, // Negative margin to offset child margins
   },
   paidByItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    borderRadius: 20,
-    marginRight: 8,
+    padding: 12, // Increased padding for better touch targets
+    borderRadius: 24, // Increased for more rounded appearance
+    marginRight: 8, // Horizontal spacing between items
+    marginBottom: 8, // Added vertical spacing between wrapped items
+    marginHorizontal: 4, // Offset from parent negative margin
     borderWidth: 1,
   },
   paidByText: {
@@ -713,12 +719,13 @@ const styles = StyleSheet.create({
   },
   splitMethodSelector: {
     flexDirection: 'row',
+    paddingBottom: 8, // Add bottom padding to prevent cut-off
   },
   splitMethodItem: {
     paddingHorizontal: 16,
     paddingVertical: 10,
     borderRadius: 20,
-    marginRight: 8,
+    marginRight: 10, // More space between items
     borderWidth: 1,
   },
   splitMethodText: {
@@ -771,11 +778,11 @@ const styles = StyleSheet.create({
     marginLeft: 4,
   },
   textArea: {
-    minHeight: 100,
+    minHeight: 120, // Increased height for better usability
     borderRadius: 12,
     paddingHorizontal: 16,
-    paddingTop: 12,
-    paddingBottom: 12,
+    paddingTop: 14, // Increased for better spacing
+    paddingBottom: 14, // Increased for better spacing
     fontSize: 16,
   },
   uploadReceiptButton: {

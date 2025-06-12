@@ -38,7 +38,7 @@ export default function TripsScreen() {
 
   const renderTripItem = ({ item, index }) => {
     // Add a small delay to each item for staggered animation
-    const ITEM_HEIGHT = 220;
+    const ITEM_HEIGHT = 260; // increased height to accommodate footer info
     const translateY = scrollY.interpolate({
       inputRange: [
         (index - 1) * ITEM_HEIGHT,
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     paddingHorizontal: 16,
-    paddingBottom: 100,
+    paddingBottom: 120, // Increased padding to avoid FAB overlap
   },
   tripCard: {
     marginBottom: 16,
@@ -147,7 +147,9 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   tripCardInner: {
-    height: 220,
+    height: 260,  // match ITEM_HEIGHT for full content display
+    display: 'flex',  // ensure flexbox layout
+    flexDirection: 'column', // stack children vertically
   },
   tripCoverImage: {
     width: '100%',
@@ -155,7 +157,8 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   tripInfo: {
-    padding: 12,
+    padding: 16,  // more consistent padding
+    flex: 1,      // take remaining space
   },
   tripTitle: {
     fontSize: 18,
@@ -164,12 +167,13 @@ const styles = StyleSheet.create({
   },
   tripDate: {
     fontSize: 14,
-    marginBottom: 8,
+    marginBottom: 12, // increased space before meta info
   },
   tripMetaInfo: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginTop: 'auto', // push to bottom of card
   },
   tripMeta: {
     fontSize: 13,
