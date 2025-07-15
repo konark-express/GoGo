@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, KeyboardAvoidingView, Platform, ScrollView, Alert } from 'react-native';
 import { router } from 'expo-router';
 import { useColorScheme } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Eye, EyeOff } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function LoginScreen() {
   const colorScheme = useColorScheme();
@@ -13,6 +14,7 @@ export default function LoginScreen() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { signInWithGoogle } = useAuth();
   
   const textColor = isDark ? '#FFFFFF' : '#000000';
   const secondaryTextColor = isDark ? '#8E8E93' : '#636366';
@@ -34,18 +36,24 @@ export default function LoginScreen() {
     }, 1500);
   };
 
-  const handleGoogleLogin = () => {
-    setLoading(true);
-    
-    // Simulate Google authentication process
-    setTimeout(() => {
-      setLoading(false);
+  const handleGoogleLogin = async () => {
+    try {
+      setLoading(true);
+      await signInWithGoogle();
       router.replace('/(tabs)');
-    }, 1500);
+    } catch (error: any) {
+      setLoading(false);
+      Alert.alert(
+        'Sign In Failed',
+        error.message || 'Failed to sign in with Google. Please try again.',
+        [{ text: 'OK' }]
+      );
+    }
   };
 
   const goToSignUp = () => {
-    router.push('/auth/signup');
+    // For now, just show an alert since signup route doesn't exist
+    Alert.alert('Coming Soon', 'Sign up functionality will be available soon.');
   };
 
   const togglePasswordVisibility = () => {
@@ -170,16 +178,18 @@ export default function LoginScreen() {
             <TouchableOpacity
               style={[
                 styles.googleButton,
-                { backgroundColor: inputBgColor }
+                { backgroundColor: inputBgColor },
+                loading && styles.googleButtonDisabled
               ]}
               onPress={handleGoogleLogin}
+              disabled={loading}
             >
               <Image
                 source={{ uri: 'https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg' }}
                 style={styles.googleIcon}
               />
               <Text style={[styles.googleButtonText, { color: textColor }]}>
-                Continue with Google
+                {loading ? 'Signing in...' : 'Continue with Google'}
               </Text>
             </TouchableOpacity>
           </View>
@@ -331,6 +341,9 @@ const styles = StyleSheet.create({
   googleButtonText: {
     fontSize: 16,
     fontWeight: '500',
+  },
+  googleButtonDisabled: {
+    opacity: 0.7,
   },
   signupContainer: {
     flexDirection: 'row',
